@@ -30,6 +30,10 @@ public class DroolsTemplate {
 	
 	private String resourceURI;
 	
+	private String host;
+	
+	private int port;
+	
 	public final ExecutionResults executeBatch(DroolsCallback callback) {
 		
 		List<Command> commands = new ArrayList<Command>();
@@ -77,7 +81,7 @@ public class DroolsTemplate {
 	
 	protected HttpClient getHttpClient() {
 		HttpClient httpClient = new HttpClient();
-		httpClient.getHostConfiguration().setHost("127.0.0.1", 8080);
+		httpClient.getHostConfiguration().setHost(getHost(), getPort());
 		return httpClient;
 	}
 
@@ -96,6 +100,24 @@ public class DroolsTemplate {
 
 	public DroolsTemplate setResourceURI(String resourceURI) {
 		this.resourceURI = resourceURI;
+		return this;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public DroolsTemplate setHost(String host) {
+		this.host = host;
+		return this;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public DroolsTemplate setPort(int port) {
+		this.port = port;
 		return this;
 	}
 
